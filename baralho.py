@@ -1,44 +1,56 @@
 import random
-mao1 = []
-mao2 = []
+import emoji
+
+mao1 = {}
+mao2 = {}
+manilha = {}
 baralho = {
-    4.1: {'nipe': 'copas', 'poder': 1},
-    4.2: {'nipe': 'espadas', 'poder': 1},
-    4.3: {'nipe': 'ouros', 'poder': 1},
-    4.4: {'nipe': 'paus', 'poder': 1},
-    5.1: {'nipe': 'paus', 'poder': 2},
-    5.2: {'nipe': 'copas', 'poder': 2},
-    5.3: {'nipe': 'ouros', 'poder': 2},
-    5.4: {'nipe': 'espadas', 'poder': 2},
-    6.1: {'nipe': 'ouros', 'poder': 3},
-    6.2: {'nipe': 'copas', 'poder': 3},
-    6.3: {'nipe': 'paus', 'poder': 3},
-    6.4: {'nipe': 'espadas', 'poder': 3},
-    7.1: {'nipe': 'copas', 'poder': 4},
-    7.2: {'nipe': 'ouros', 'poder': 4},
-    7.3: {'nipe': 'paus', 'poder': 4},
-    7.4: {'nipe': 'espadas', 'poder': 4},
-    11.1: {'nipe': 'espadas', 'poder': 5},
-    11.2: {'nipe': 'copas', 'poder': 5},
-    11.3: {'nipe': 'ouros', 'poder': 5},
-    11.4: {'nipe': 'paus', 'poder': 5},
-    12.1: {'nipe': 'espadas', 'poder': 6},
-    12.2: {'nipe': 'ouros', 'poder': 6},
-    12.3: {'nipe': 'copas', 'poder': 6},
-    12.4: {'nipe': 'paus', 'poder': 6},
-    13.1: {'nipe': 'espadas', 'poder': 7},
-    13.2: {'nipe': 'ouros', 'poder': 7},
-    13.3: {'nipe': 'paus', 'poder': 7},
-    13.4: {'nipe': 'copas', 'poder': 7},
-    14.1: {'nipe': 'espadas', 'poder': 8},
-    14.2: {'nipe': 'copas', 'poder': 8},
-    14.3: {'nipe': 'paus', 'poder': 8},
-    14.4: {'nipe': 'ouros', 'poder': 8},
+    emoji.emojize('4:heart_suit:'): {'poder': 1},
+    emoji.emojize('4:spade_suit:'):  {'poder': 1},
+    emoji.emojize('4:diamond_suit:'): {'poder': 1},
+    emoji.emojize('4:diamond_suit:'): {'poder': 1},
+    emoji.emojize('5:spade_suit:'): {'poder': 2},
+    emoji.emojize('5:heart_suit:'): {'poder': 2},
+    emoji.emojize('5:diamond_suit:'): {'poder': 2},
+    emoji.emojize('5:club_suit:'):  {'poder': 2},
+    emoji.emojize('6:diamond_suit:'):{' poder': 3},
+    emoji.emojize('6:heart_suit:'): {'poder': 3},
+    emoji.emojize('6:club_suit:'): {'poder': 3},
+    emoji.emojize('6:spade_suit:'):  {'poder': 3},
+    emoji.emojize('7:heart_suit:'): {'poder': 4},
+    emoji.emojize('7:diamond_suit:'): {'poder': 4},
+    emoji.emojize('7:club_suit:'): {'poder': 4},
+    emoji.emojize('7:spade_suit:'):  {'poder': 4},
+    emoji.emojize('Q:spade_suit:'):  {'poder': 5},
+    emoji.emojize('Q:heart_suit:'): {'poder': 5},
+    emoji.emojize('Q:diamond_suit:'): {'poder': 5},
+    emoji.emojize('Q:club_suit:'): {'poder': 5},
+    emoji.emojize('J:spade_suit:'):  {'poder': 6},
+    emoji.emojize('J:diamond_suit:'): {'poder': 6},
+    emoji.emojize('J:heart_suit:'): {'poder': 6},
+    emoji.emojize('J:club_suit:'): {'poder': 6},
+    emoji.emojize('K:spade_suit:'):  {'poder': 7},
+    emoji.emojize('K:diamond_suit:'): {'poder': 7},
+    emoji.emojize('K:club_suit:'): {'poder': 7},
+    emoji.emojize('K:heart_suit:'): {'poder': 7},
+    emoji.emojize('A:spade_suit:'):  {'poder': 8},
+    emoji.emojize('A:heart_suit:'): {'poder': 8},
+    emoji.emojize('A:club_suit:'): {'poder': 8},
+    emoji.emojize('A:diamond_suit:'): {'poder': 8},
 }
-cartas = baralho.items()
-mao1 = random.sample(cartas, 39)
+items = list(baralho.items())  # List of tuples of (key,values)
+random.shuffle(items)
 
-# k, v in baralho.items():
-    #print(f'O {k} é {v}')
-
-print(mao1)
+while len(mao1) <= 0:
+    mao2.update(items[:3])
+    mao1.update(items[-3:])
+    valuesmao2 = list(mao2.values())
+    valuesmao1 = list(mao1.values())
+    keysmao1 = list(mao1.keys())
+    keysmao2 = list(mao2.keys())
+    manilha.update(items[9:10])
+    manilhakeys= list(manilha.keys())
+    manilhavalue = list(manilha.values())     #vira retirado mas preciso ainda fazer a manilha pelo sistema de ranking
+    #manilhavalue++
+print(f'jogador mao 1 {keysmao1}''\n'f'e o do jogador 2 {keysmao2} o vira é esse {manilhakeys}.'
+      f'A manilha é essa ')
