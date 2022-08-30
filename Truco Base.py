@@ -2,30 +2,34 @@ from time import sleep
 from random import randint
 
 team2 = team1 = 0  # times
-valc1 = valc2 = 0  # valor carta atual
+total1 = total2 = 0  # valor carta atual
 pdt1 = pdt2 = 0    # ponto dos turnos
 pri=''             # fez a primeira
 
-print("O jogo começou")
-print("+-"*20)
+#------------------DEFS-------------------------------------------------------
+def div(msg):                              #Definição de variavel para divisão
+    print('='*30)
+    print(msg)
+    print('=' * 30)
+
+#-----------------PROGRAMA PRINCIPAL------------------------------------------
+div("O jogo começou")
 while team1 < 12 and team2 < 12:           #Jogo em si
     pdt1 = pdt2 = 0
     print("Embaralhando as cartas")
     for c in range (1,4):                  #Para cada turno (fazer 3 vezes)
-        #sleep(1)
-        print("=-"*20)
-        print(f"TURNO {c}")
-        print("=-" * 20)
-        #sleep(4)
-        valc1 = valc2 = 0                  #valor carta atual
-        valc1 = randint(1, 2)              #aleatorizando as cartas do time 1
-        valc2 = randint(1, 2)              #aleatorizando as cartas do time 2
 
-        print(f'O valor das cartas do time 1 é:[{valc1}]')
-        #sleep(3)
-        print(f'O valor das cartas do time 2 é:[{valc2}]')
+        div(f"TURNO {c}")
 
-        if valc1>valc2:                    #se o valor da carta atual do time 2 for maior do que o time1
+        #------------------------CARTAS---------------------------------------
+        total1 = total2 = 0                  #valor carta atual
+
+        total1 = randint(1,9)
+        total2 = randint(1,9)
+
+        div(f'O valor das cartas do time 1 é:[{total1}]\nO valor das cartas do time 2 é:[{total2}]')
+
+        if total1>total2:                    #se o valor da carta atual do time 2 for maior do que o time1
             if c == 1:                     #se for o primeiro turno
                 pri = "pri1"
             print(f"o Time 1  venceu o turno {c}")
@@ -35,7 +39,7 @@ while team1 < 12 and team2 < 12:           #Jogo em si
                 print("A equipe 1 venceu a rodada")
                 team1 += 1
                 break
-        if valc2>valc1:                    #se o valor da carta atual do time 2 for maior do que o time1
+        if total2>total1:                    #se o valor da carta atual do time 2 for maior do que o time1
             if c == 1:                     #se for o primeiro turno
                 pri = "pri2"
             print(f"o Time 2 venceu o turno {c}")
@@ -45,7 +49,7 @@ while team1 < 12 and team2 < 12:           #Jogo em si
                 print("A equipe 2 venceu a rodada")
                 team2 += 1
                 break
-        if valc1==valc2:                   #EMPATE
+        if total1==total2:                   #EMPATE
             print("Empate")
             if c==1:                       #se for o primeiro turno
                 pdt1=pdt2=1
@@ -74,13 +78,9 @@ while team1 < 12 and team2 < 12:           #Jogo em si
                     team2 = team2 + 1
                     break
                 break
-
-    print('='*20)
-    print(f"o time 1 tem {team1} pontos")
-    print(f"o time 2 tem {team2} pontos")
-    print('=' * 20)
-
+    div(f"o time 1 tem {team1} pontos\no time 2 tem {team2} pontos")
+#-----------Finalização--------------------------------------------------------
 if team1 >= 12:                            #se o time 1 tem 12 ou mais pontos
-    print('o time 1 Ganhou!!!')
+    div('o time 1 Ganhou!!!')
 if team2 >= 12:                            #se o time 2 tem 12 ou mais pontos
-    print('o time 2 Ganhou!!!')
+    div('o time 2 Ganhou!!!')
