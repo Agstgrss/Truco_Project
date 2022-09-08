@@ -1,16 +1,18 @@
 from time import sleep
 from random import randint
+import baralho
 
-team2 = team1 = 0  # times
+team2 = team1 = 0    # times
 total1 = total2 = 0  # valor carta atual
-pdt1 = pdt2 = 0    # ponto dos turnos
-pri=''             # fez a primeira
+pdt1 = pdt2 = 0      # ponto dos turnos
+pri=''               # fez a primeira
 
 #------------------DEFS-------------------------------------------------------
 def div(msg):                              #Definição de variavel para divisão
     print('='*30)
     print(msg)
     print('=' * 30)
+
 
 #-----------------PROGRAMA PRINCIPAL------------------------------------------
 div("O jogo começou")
@@ -23,14 +25,15 @@ while team1 < 12 and team2 < 12:           #Jogo em si
 
         #------------------------CARTAS---------------------------------------
         total1 = total2 = 0                  #valor carta atual
+        total1 = baralho.valuesmao1[2]["poder"]
+        total2 = baralho.valuesmao2[2]["poder"]
 
-        total1 = randint(1,9)
-        total2 = randint(1,9)
+
 
         div(f'O valor das cartas do time 1 é:[{total1}]\nO valor das cartas do time 2 é:[{total2}]')
 
         if total1>total2:                    #se o valor da carta atual do time 2 for maior do que o time1
-            if c == 1:                     #se for o primeiro turno
+            if c == 1:                       #se for o primeiro turno
                 pri = "pri1"
             print(f"o Time 1  venceu o turno {c}")
             pdt1 +=1
@@ -46,7 +49,7 @@ while team1 < 12 and team2 < 12:           #Jogo em si
             pdt2 +=1
             print(f"o Time 2 tem {pdt2} pontos de turno")
             if pdt2==2:                    #se os pontos de turno do time 2 for igual a dois
-                print("A equipe 2 venceu a rodada")
+                print("A Equipe 2 venceu a rodada!!!!")
                 team2 += 1
                 break
         if total1==total2:                   #EMPATE
@@ -78,9 +81,13 @@ while team1 < 12 and team2 < 12:           #Jogo em si
                     team2 = team2 + 1
                     break
                 break
+    total1 = total2 = 0
+    value1 = value2 = 0
+
     div(f"o time 1 tem {team1} pontos\no time 2 tem {team2} pontos")
 #-----------Finalização--------------------------------------------------------
 if team1 >= 12:                            #se o time 1 tem 12 ou mais pontos
     div('o time 1 Ganhou!!!')
 if team2 >= 12:                            #se o time 2 tem 12 ou mais pontos
     div('o time 2 Ganhou!!!')
+
