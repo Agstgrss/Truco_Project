@@ -3,31 +3,30 @@ from random import randint
 import baralho
 
 team2 = team1 = 0    # times
-total1 = total2 = 0  # valor carta atual
 pdt1 = pdt2 = 0      # ponto dos turnos
+total1 = total2 = 0  # valor carta atual
 pri=''               # fez a primeira
-
+e=0
 #------------------DEFS-------------------------------------------------------
 def div(msg):                              #Definição de variavel para divisão
     print('='*30)
     print(msg)
     print('=' * 30)
 
-
 #-----------------PROGRAMA PRINCIPAL------------------------------------------
 div("O jogo começou")
-while team1 < 12 and team2 < 12:           #Jogo em si
-    pdt1 = pdt2 = 0
+while team1 < 12 and team2 < 12:             #Jogo em si
+
     print("Embaralhando as cartas")
-    for c in range (1,4):                  #Para cada turno (fazer 3 vezes)
-
+    e=0
+    pdt1 = pdt2 = 0
+    for c in range (1,4):                    #Para cada turno (fazer 3 vezes)
         div(f"TURNO {c}")
-
         #------------------------CARTAS---------------------------------------
         total1 = total2 = 0                  #valor carta atual
-        total1 = baralho.valuesmao1[2]["poder"]
-        total2 = baralho.valuesmao2[2]["poder"]
-
+        total1,total2 = baralho.emb(0,0)     #embaralhar
+        #total1 = randint(1,2)
+        #total2 = randint(1,2)
 
 
         div(f'O valor das cartas do time 1 é:[{total1}]\nO valor das cartas do time 2 é:[{total2}]')
@@ -56,33 +55,37 @@ while team1 < 12 and team2 < 12:           #Jogo em si
             print("Empate")
             if c==1:                       #se for o primeiro turno
                 pdt1=pdt2=1
+                e+=1
+
             elif c==2:                     #se for o segundo turno
+                e+=1
                 if pdt1>pdt2:              #se o time1 tiver mais pontos de turno
                     print('O time 1 ganhou a rodada por que fez a primeira')
                     team1 += 1
                     break
                 elif pdt2>pdt1:            #se o time2 tiver mais pontos de turno
                     print('O time 2 ganhou a rodada por que fez a primeira')
-                    team2 += 2
+                    team2 += 1
                     break
             elif c==3:                     #se for o turno 3
                 print("Os times empataram o ultimo turno")
-                if pdt1 == pdt2:
+                if e==2: #pdt1==1 and pdt2 ==1 and
                     print("os times empataram 3  vezes")
                     break
                 elif pri in 'pri1':        #se o time 1 ganhou a primeira
                     print("o time 1 ganhou a rodada pois fez a primeira")
-                    pdt1 = pdt2 = 0
                     team1 = team1 + 1
+                    e=0
                     break
                 elif pri in 'pri2':        #se o time 2 ganhou a primeira
                     print("o time 2 ganhou a rodada pois fez a primeira")
-                    pdt1 = pdt2 = 0
                     team2 = team2 + 1
+                    e=0
                     break
                 break
-    total1 = total2 = 0
-    value1 = value2 = 0
+
+
+
 
     div(f"o time 1 tem {team1} pontos\no time 2 tem {team2} pontos")
 #-----------Finalização--------------------------------------------------------
@@ -90,4 +93,5 @@ if team1 >= 12:                            #se o time 1 tem 12 ou mais pontos
     div('o time 1 Ganhou!!!')
 if team2 >= 12:                            #se o time 2 tem 12 ou mais pontos
     div('o time 2 Ganhou!!!')
+
 
