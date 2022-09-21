@@ -9,7 +9,7 @@ pri=''               # fez a primeira
 e=0
 #------------------DEFS-------------------------------------------------------
 def div(msg):                              #Definição de variavel para divisão
-    print('='*30)
+    print('='*30)#fodase
     print(msg)
     print('=' * 30)
 
